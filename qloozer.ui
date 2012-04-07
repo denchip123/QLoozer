@@ -25,9 +25,17 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>ХУЙ</string>
+     <string>About</string>
     </property>
+    <addaction name="actionAbout_QLoozer"/>
    </widget>
+   <widget class="QMenu" name="menuQLoozer">
+    <property name="title">
+     <string>QLoozer</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuQLoozer"/>
    <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -39,6 +47,16 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAbout_QLoozer">
+   <property name="text">
+    <string>About QLoozer</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
