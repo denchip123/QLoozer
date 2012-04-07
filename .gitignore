@@ -1,3 +1,7 @@
 *.o
 *.user
 *.exe
+QLoozer
+ui_qloozer.h
+moc_*
+Makefile

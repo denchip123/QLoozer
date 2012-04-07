@@ -14,9 +14,17 @@ class QLoozer : public QMainWindow
 public:
     explicit QLoozer(QWidget *parent = 0);
     ~QLoozer();
+public slots:
+    void OpenClassFile(QString file);
 
 private:
     Ui::QLoozer *ui;
+    void MakeConnections();
+
+private slots:
+    void OnFindLooserClicked();
+    void OnClassChange(QString newClass);
+    void OnChooseAnotherClassFile();
 };
 
 #endif // QLOOZER_H
