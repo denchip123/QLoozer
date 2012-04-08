@@ -1,7 +1,10 @@
 #ifndef QLOOZER_H
 #define QLOOZER_H
 
+
 #include <QMainWindow>
+#include <QCheckBox>
+#include <QStringList>
 
 namespace Ui {
     class QLoozer;
@@ -19,8 +22,9 @@ public slots:
 
 private:
     Ui::QLoozer *ui;
+    QStringList headerList;
     void MakeConnections();
-    void AddStudentRow(QString name, int raiting);
+    void AddStudentRow(QString name, int raiting, int stat);
 
 private slots:
     void OnFindLooserClicked();
