@@ -2,6 +2,8 @@
 
 QLoozerClassClass::QLoozerClassClass()
 {
+    membersCount = new int;
+    membersCount = 0;
     name = new QStringList;
     bonus = new QVector<int>;
     stat = new QVector<int>;
@@ -22,6 +24,7 @@ void QLoozerClassClass::AddStudent(QString studentName, int studentBonus, int st
     bonus->push_back(studentBonus);
     stat->push_back(studentStat);
     here->push_back(true);
+    membersCount++;
     return;
 }
 
@@ -43,4 +46,9 @@ int QLoozerClassClass::GetStat(int index)
 bool QLoozerClassClass::IsHere(int index)
 {
     return here->value(index);
+}
+
+int QLoozerClassClass::GetMembersCount()
+{
+    return *membersCount;
 }

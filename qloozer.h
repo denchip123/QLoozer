@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QCheckBox>
 #include <QStringList>
+#include <QTime>
+#include "qloozerclassclass.h"
 
 namespace Ui {
     class QLoozer;
@@ -25,6 +27,7 @@ private:
     QStringList headerList;
     void MakeConnections();
     void AddStudentRow(QString name, int raiting, int stat);
+    int GetLoozer(QLoozerClassClass badClass);
 
 private slots:
     void OnFindLooserClicked();

@@ -15,8 +15,9 @@ public:
     int GetStat(int index);
     bool IsHere(int index);
     void AddStudent(QString studentName, int studentBonus, int studentStat);
-
+    int GetMembersCount();
 private:
+    int* membersCount;
     QStringList* name;
     QVector<int>* bonus;
     QVector<int>* stat;

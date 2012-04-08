@@ -67,6 +67,36 @@ void QLoozer::AddStudentRow(QString name, int bonus, int stat)
     return;
 }
 
+int QLoozer::GetLoozer(QLoozerClassClass badClass)
+{
+    QTime midnight(0, 0, 0);
+    qsrand(midnight.secsTo(QTime::currentTime()));
+
+    QList<int> possibleLoozers;
+
+    int currendMember;
+    bool checked[250];
+    for(int i=0;i<250;i++)
+    {
+        checked[i]=false;
+    }
+    for (int i = 0; i < (badClass.GetMembersCount()/4);)
+    {
+        currendMember=qrand()%badClass.GetMembersCount();
+        if( !checked[currendMember] ){
+            possibleLoozers.push_back(currendMember);
+            checked[currendMember]=true;
+            i++;
+        }
+    }
+    currendMember = qrand()%possibleLoozers.count();
+    for(int i=0;i<possibleLoozers.count();i++)
+    {
+
+    }
+    for
+}
+
 /*
  *
  * Public slots
