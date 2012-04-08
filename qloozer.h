@@ -20,6 +20,7 @@ public slots:
 private:
     Ui::QLoozer *ui;
     void MakeConnections();
+    void AddStudentRow(QString name, int raiting);
 
 private slots:
     void OnFindLooserClicked();
