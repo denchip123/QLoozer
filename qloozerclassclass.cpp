@@ -2,6 +2,7 @@
 
 QLoozerClassClass::QLoozerClassClass()
 {
+    name = new QStringList;
     bonus = new QList<int>;
     stat = new QList<int>;
     here = new QList<bool>;
@@ -9,6 +10,7 @@ QLoozerClassClass::QLoozerClassClass()
 
 QLoozerClassClass::~QLoozerClassClass()
 {
+    delete name;
     delete bonus;
     delete stat;
     delete here;
@@ -16,19 +18,22 @@ QLoozerClassClass::~QLoozerClassClass()
 
 void QLoozerClassClass::AddStudent(QString studentName, int studentBonus, int studentStat)
 {
+//    name << studentName;
+//    bonus << studentBonus;
+//    stat << studentStat;
+//    here << true;
     return;
 }
 
 int QLoozerClassClass::GetBonus(int index)
 {
-
-    return 0;
+    return bonus[index];
 }
 
 QString QLoozerClassClass::GetName(int index)
 {
 
-    return QString("ga");
+    return name[index];
 }
 
 int QLoozerClassClass::GetStat(int index)
