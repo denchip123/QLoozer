@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <QStringList>
-#include <QList>
+#include <QVector>
 
 class QLoozerClassClass
 {
@@ -15,11 +15,12 @@ public:
     int GetStat(int index);
     bool IsHere(int index);
     void AddStudent(QString studentName, int studentBonus, int studentStat);
+
 private:
     QStringList* name;
-    QList<int>* bonus;
-    QList<int>* stat;
-    QList<bool>* here;
+    QVector<int>* bonus;
+    QVector<int>* stat;
+    QVector<bool>* here;
 };
 
 #endif // QLOOZERCLASSCLASS_H

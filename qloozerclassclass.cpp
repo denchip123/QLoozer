@@ -3,9 +3,9 @@
 QLoozerClassClass::QLoozerClassClass()
 {
     name = new QStringList;
-    bonus = new QList<int>;
-    stat = new QList<int>;
-    here = new QList<bool>;
+    bonus = new QVector<int>;
+    stat = new QVector<int>;
+    here = new QVector<bool>;
 }
 
 QLoozerClassClass::~QLoozerClassClass()
@@ -18,31 +18,29 @@ QLoozerClassClass::~QLoozerClassClass()
 
 void QLoozerClassClass::AddStudent(QString studentName, int studentBonus, int studentStat)
 {
-//    name << studentName;
-//    bonus << studentBonus;
-//    stat << studentStat;
-//    here << true;
+    name->push_back(studentName);
+    bonus->push_back(studentBonus);
+    stat->push_back(studentStat);
+    here->push_back(true);
     return;
 }
 
 int QLoozerClassClass::GetBonus(int index)
 {
-    return bonus[index];
+    return bonus->value(index);
 }
 
 QString QLoozerClassClass::GetName(int index)
 {
-
-    return name[index];
+    return name->value(index);
 }
 
 int QLoozerClassClass::GetStat(int index)
 {
-
-    return 0;
+    return stat->value(index);
 }
 
 bool QLoozerClassClass::IsHere(int index)
 {
-    return true;
+    return here->value(index);
 }
