@@ -3,9 +3,9 @@
 
 QLoozerClassFilesParser::QLoozerClassFilesParser()
 {
-    classes = new QList<QLoozerClassClass>;
     badCP = new QLoozerClassClass;
     badCP->AddStudent("six",6,6);
+    classes_count = 0;
 
     struct dirent *entry;
     DIR *dp;
@@ -18,21 +18,27 @@ QLoozerClassFilesParser::QLoozerClassFilesParser()
     while((entry = readdir(dp)))
     {
         qDebug("gg");
-        QLoozerClassClass tmp = Parse(QString(entry->d_name));
+        //QLoozerClassClass tmp = Parse(QString(entry->d_name));
+        QLoozerClassClass tmp = Parse(QString("10A.txt"));
+
         qDebug("keke");
         QString a, b;
         qDebug("s0adasdwe");
         a = badCP->GetName(0);
-        qDebug("s1adasdwe");
+        qDebug(a.toAscii());
         b = tmp.GetName(0);
-        qDebug("s2adasdwe");
+        qDebug(b.toAscii());
         if (a != b){
             qDebug("sadasdwe");
-            classes->push_back(Parse(QString(entry->d_name)));
+            classes[classes_count++] = tmp;
+            qDebug(QString(classes[classes_count-1].GetName(0)).toAscii());
         }else qDebug("lol");
     }
     qDebug("sdf");
+//    for(int  i=0;i<classes[0].GetMembersCount();i++)
+//        qDebug(classes[0].GetName(i).toAscii());
 
+    qDebug("хуй");
     closedir(dp);
 }
 
@@ -119,4 +125,9 @@ bool QLoozerClassFilesParser::Match(char *string, char *pattern)
   while (*string++);
 
   return false;
+}
+
+QLoozerClassClass QLoozerClassFilesParser::GetThisClass(int index)
+{
+    return classes[index];
 }

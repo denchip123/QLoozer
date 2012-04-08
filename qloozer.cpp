@@ -107,19 +107,24 @@ int QLoozer::GetLoozer(QLoozerClassClass badClass)
 bool QLoozer::LoadClasses()
 {
     qDebug("loading...");
-    int c = classParser->classes->count();
-    for (int i = 0; i < c; i++)
-    {
-        int m = classParser->classes->value(i).GetMembersCount();
+    int c = classParser->classes[classParser->classes_count].GetMembersCount();
+//    for (int i = 0; i < c; i++)
+//    {
+        int m = classParser->GetThisClass(0).GetMembersCount();
         qDebug(QString::number(m).toAscii());
         for (int j = 0; j < m; j++)
         {
             qDebug("ga");
-            AddStudentRow(classParser->classes->value(i).GetName(j),
-                          classParser->classes->value(i).GetBonus(j),
-                          classParser->classes->value(i).GetStat(j));
+            QLoozerClassClass tmp;
+            qDebug("gd222fa");
+            tmp = classParser->GetThisClass(0);
+            qDebug("gggggovno");
+            qDebug(tmp.GetName(0).toAscii());
+            AddStudentRow(tmp.GetName(j),
+                          tmp.GetBonus(j),
+                          tmp.GetStat(j));
         }
-    }
+//    }
 }
 
 /*
