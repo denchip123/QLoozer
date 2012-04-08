@@ -14,17 +14,17 @@ QLoozer::QLoozer(QWidget *parent) :
     ui->studentsTableWidget->setColumnWidth(2,42);
     ui->studentsTableWidget->setColumnWidth(3,32);
 
+    classParser = new QLoozerClassFilesParser;
+    LoadClasses();
+
     headerList << tr("n") << tr("Names") << tr("Bonus") << tr("Stat");
     ui->studentsTableWidget->setHorizontalHeaderLabels(headerList);
-
-    AddStudentRow("gagagaga", 1, 5);
-    AddStudentRow("gagagrterteaga", 13, 654);
-    AddStudentRow("gagagasdfsdga", 17, 777);
 }
 
 QLoozer::~QLoozer()
 {
     delete ui;
+    delete classParser;
 }
 
 /*
@@ -74,27 +74,52 @@ int QLoozer::GetLoozer(QLoozerClassClass badClass)
 
     QList<int> possibleLoozers;
 
-    int currendMember;
+    int currentMember;
     bool checked[250];
     for(int i=0;i<250;i++)
     {
         checked[i]=false;
     }
-    for (int i = 0; i < (badClass.GetMembersCount()/4);)
+
+    int part = badClass.GetMembersCount()/4;
+    if (part <1)
+        part = 1;
+    for (int i = 0; i < part;)
     {
-        currendMember=qrand()%badClass.GetMembersCount();
-        if( !checked[currendMember] ){
-            possibleLoozers.push_back(currendMember);
-            checked[currendMember]=true;
+        currentMember=qrand()%badClass.GetMembersCount();
+        if( !checked[currentMember] ){
+            possibleLoozers.push_back(currentMember);
+            checked[currentMember]=true;
             i++;
         }
     }
-    currendMember = qrand()%possibleLoozers.count();
+    currentMember = qrand()%possibleLoozers.count();
     for(int i=0;i<possibleLoozers.count();i++)
     {
-
+        int tmp = qrand()%possibleLoozers.count();
+        if (badClass.GetBonus(currentMember) < badClass.GetBonus(tmp)) {
+            currentMember = tmp;
+        }
     }
-    for
+    return currentMember;
+}
+
+bool QLoozer::LoadClasses()
+{
+    qDebug("loading...");
+    int c = classParser->classes->count();
+    for (int i = 0; i < c; i++)
+    {
+        int m = classParser->classes->value(i).GetMembersCount();
+        qDebug(QString::number(m).toAscii());
+        for (int j = 0; j < m; j++)
+        {
+            qDebug("ga");
+            AddStudentRow(classParser->classes->value(i).GetName(j),
+                          classParser->classes->value(i).GetBonus(j),
+                          classParser->classes->value(i).GetStat(j));
+        }
+    }
 }
 
 /*

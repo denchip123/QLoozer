@@ -2,7 +2,6 @@
 
 QLoozerClassClass::QLoozerClassClass()
 {
-    membersCount = new int;
     membersCount = 0;
     name = new QStringList;
     bonus = new QVector<int>;
@@ -50,5 +49,5 @@ bool QLoozerClassClass::IsHere(int index)
 
 int QLoozerClassClass::GetMembersCount()
 {
-    return *membersCount;
+    return membersCount;
 }

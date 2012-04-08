@@ -17,7 +17,7 @@ public:
     void AddStudent(QString studentName, int studentBonus, int studentStat);
     int GetMembersCount();
 private:
-    int* membersCount;
+    int membersCount;
     QStringList* name;
     QVector<int>* bonus;
     QVector<int>* stat;
