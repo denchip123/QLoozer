@@ -3,6 +3,7 @@
 
 
 #include <QMainWindow>
+#include <QFileDialog>
 #include <QCheckBox>
 #include <QStringList>
 #include <QTime>
@@ -30,6 +31,7 @@ private:
     void AddStudentRow(QString name, int raiting, int stat);
     int GetLoozer(QLoozerClassClass badClass);
     bool LoadClasses();
+    void LoadClass(QLoozerClassClass *badClass);
 
 private slots:
     void OnFindLooserClicked();

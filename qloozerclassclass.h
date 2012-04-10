@@ -13,15 +13,17 @@ public:
     QString GetName(int index);
     int GetBonus(int index);
     int GetStat(int index);
+    void SetHere(int index, bool b);
     bool IsHere(int index);
     void AddStudent(QString studentName, int studentBonus, int studentStat);
     int GetMembersCount();
+    int SetMembersCount(int value);
 private:
     int membersCount;
     QStringList* name;
     QVector<int>* bonus;
     QVector<int>* stat;
-    QVector<bool>* here;
+    QVector<bool> here;
 };
 
 #endif // QLOOZERCLASSCLASS_H

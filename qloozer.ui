@@ -172,12 +172,28 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>336</x>
-     <y>139</y>
+     <x>537</x>
+     <y>327</y>
     </hint>
     <hint type="destinationlabel">
      <x>359</x>
      <y>157</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exitLoozerButton</sender>
+   <signal>clicked()</signal>
+   <receiver>QLoozer</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>499</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>544</x>
+     <y>242</y>
     </hint>
    </hints>
   </connection>

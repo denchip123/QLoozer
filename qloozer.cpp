@@ -1,6 +1,12 @@
 #include "qloozer.h"
 #include "ui_qloozer.h"
-
+//Осторожно -- Костыль
+//    (__)_(__)
+//       | |
+//       | |
+//       | |
+//       | |
+//       \I/
 QLoozer::QLoozer(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::QLoozer)
@@ -14,11 +20,12 @@ QLoozer::QLoozer(QWidget *parent) :
     ui->studentsTableWidget->setColumnWidth(2,42);
     ui->studentsTableWidget->setColumnWidth(3,32);
 
-    classParser = new QLoozerClassFilesParser;
-    LoadClasses();
+    //classParser = new QLoozerClassFilesParser;
+    //LoadClasses();
 
     headerList << tr("n") << tr("Names") << tr("Bonus") << tr("Stat");
     ui->studentsTableWidget->setHorizontalHeaderLabels(headerList);
+    MakeConnections();
 }
 
 QLoozer::~QLoozer()
@@ -37,7 +44,7 @@ void QLoozer::MakeConnections()
 {
     connect(ui->findLooserButton,SIGNAL(pressed()),this,SLOT(OnFindLooserClicked()));
     connect(ui->classChooseComboBox,SIGNAL(currentIndexChanged(QString)),this,SLOT(OnClassChange(QString)));
-    connect(ui->openClassFileButton,SIGNAL(pressed()),this,SLOT(OnChooseAnotherClassFile()));
+    connect(ui->openClassFileButton,SIGNAL(clicked()),this,SLOT(OnChooseAnotherClassFile()));
     return;
 }
 
@@ -66,7 +73,13 @@ void QLoozer::AddStudentRow(QString name, int bonus, int stat)
 
     return;
 }
-
+//Осторожно -- Костыль
+//    (__)_(__)
+//       | |
+//       | |
+//       | |
+//       | |
+//       \I/
 int QLoozer::GetLoozer(QLoozerClassClass badClass)
 {
     QTime midnight(0, 0, 0);
@@ -78,7 +91,7 @@ int QLoozer::GetLoozer(QLoozerClassClass badClass)
     bool checked[250];
     for(int i=0;i<250;i++)
     {
-        checked[i]=false;
+        if(badClass.IsHere(i)) checked[i]=false;
     }
 
     int part = badClass.GetMembersCount()/4;
@@ -101,12 +114,19 @@ int QLoozer::GetLoozer(QLoozerClassClass badClass)
             currentMember = tmp;
         }
     }
+    badClass.SetHere(currentMember, false);//chtoby v sled raz ego ne vybralo loozerom
     return currentMember;
 }
-
+//Осторожно -- Костыль
+//    (__)_(__)
+//       | |
+//       | |
+//       | |
+//       | |
+//       \I/
 bool QLoozer::LoadClasses()
 {
-    qDebug("loading...");
+/*    qDebug("loading...");
     int c = classParser->classes[classParser->classes_count].GetMembersCount();
 //    for (int i = 0; i < c; i++)
 //    {
@@ -124,7 +144,7 @@ bool QLoozer::LoadClasses()
                           tmp.GetBonus(j),
                           tmp.GetStat(j));
         }
-//    }
+//    }*/
 }
 
 /*
@@ -133,11 +153,50 @@ bool QLoozer::LoadClasses()
  *
  */
 
-void QLoozer::OpenClassFile(QString file)
+void QLoozer::OpenClassFile(QString fileName)
 {
-    return;
-}
 
+        int bonus[1000+5], stat[1000+5], count=0;
+        QString names[1000+5];
+
+        QFile file;
+        file.setFileName(fileName);
+        file.open(QIODevice::ReadOnly);
+        QTextStream in( &file );
+        QLoozerClassClass *curClass = new QLoozerClassClass;
+
+
+        QString curStr="is't Null";
+        int temp;
+        while((curStr=in.readLine())!="#bonus" && !curStr.isNull())
+            names[count++]=curStr;
+        for(int i=0;i<count;i++)
+        {
+            in>>temp;
+            bonus[i]=temp;
+        }
+        curStr=in.readLine();
+        for(int i=0;i<count;i++)
+        {
+            in>>temp;
+            stat[i]=temp;
+        }
+        for(int i=0;i<count;i++)
+        {
+            curClass->AddStudent(names[i],bonus[i],stat[i]);
+        }
+        curClass->SetMembersCount(count);
+        LoadClass(curClass);
+}
+void QLoozer::LoadClass(QLoozerClassClass *badClass)
+{
+    for (int j = 0; j < badClass->GetMembersCount(); j++)
+    {
+        AddStudentRow(badClass->GetName(j),
+                      badClass->GetBonus(j),
+                      badClass->GetStat(j));
+    }
+}
 /*
  *
  * Private slots
@@ -146,6 +205,8 @@ void QLoozer::OpenClassFile(QString file)
 
 void QLoozer::OnChooseAnotherClassFile()
 {
+    QString s = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("�������"),"/","Text File (*.txt)");
+    OpenClassFile(s);
     return;
 }
 

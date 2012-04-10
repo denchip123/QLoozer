@@ -3,7 +3,7 @@
 
 QLoozerClassFilesParser::QLoozerClassFilesParser()
 {
-    badCP = new QLoozerClassClass;
+   /* badCP = new QLoozerClassClass;
     badCP->AddStudent("six",6,6);
     classes_count = 0;
 
@@ -39,7 +39,7 @@ QLoozerClassFilesParser::QLoozerClassFilesParser()
 //        qDebug(classes[0].GetName(i).toAscii());
 
     qDebug("хуй");
-    closedir(dp);
+    closedir(dp);*/
 }
 
 QLoozerClassFilesParser::~QLoozerClassFilesParser()
@@ -56,7 +56,7 @@ QLoozerClassFilesParser::~QLoozerClassFilesParser()
 //       \I/
 QLoozerClassClass QLoozerClassFilesParser::Parse(QString fileName)
 {
-    QLoozerClassClass *curClass = new QLoozerClassClass;
+/*    QLoozerClassClass *curClass = new QLoozerClassClass;
 
     if (fileName == QString('.') || fileName == QString("..")){
         curClass->AddStudent("six",6,6);
@@ -100,10 +100,16 @@ QLoozerClassClass QLoozerClassFilesParser::Parse(QString fileName)
         curClass->AddStudent(names[i],bonus[i],stat[i]);
     }
 
-    return *curClass;
+    return *curClass;*/
 }
 
-
+//Осторожно -- Костыль
+//    (__)_(__)
+//       | |
+//       | |
+//       | |
+//       | |
+//       \I/
 bool QLoozerClassFilesParser::Match(char *string, char *pattern)
 {
   for (; '*'^*pattern; ++pattern, ++string)
