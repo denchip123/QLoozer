@@ -27,9 +27,7 @@ private:
     QStringList headerList;
     void MakeConnections();
     void AddStudentRow(QString name, int raiting, int stat);
-    int GetLoozer(QLoozerClassClass badClass);
-    bool LoadClasses();
-    void LoadClass(QLoozerClassClass *badClass);
+    int GetLoozer(void);
 
 private slots:
     void OnFindLooserClicked();
