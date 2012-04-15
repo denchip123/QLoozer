@@ -25,6 +25,8 @@ QLoozer::QLoozer(QWidget *parent) :
     MakeConnections();
 
     QLoozerLuaAPI lAPI;
+ //   QObject::connect(QLoozerLuaAPI::getInstance(),SIGNAL(SendLooserInfo(QString,int,int)),this,SLOT(AddStudentRow(QString,int,int)));
+
 
 }
 
@@ -49,6 +51,7 @@ void QLoozer::MakeConnections()
 
 void QLoozer::AddStudentRow(QString name, int bonus, int stat)
 {
+    qDebug("YAAAZZ");
     int current_row = ui->studentsTableWidget->rowCount();
     ui->studentsTableWidget->setRowCount(current_row + 1);
     ui->studentsTableWidget->setRowHeight(current_row, 24);
@@ -72,8 +75,8 @@ void QLoozer::AddStudentRow(QString name, int bonus, int stat)
 
     return;
 }
-int QLoozer::GetLoozer(void)
-{
+//int QLoozer::GetLoozer(void)
+//{
 //| OLD CODE
 //|-> QTime midnight(0, 0, 0);
 //    qsrand(midnight.secsTo(QTime::currentTime()));
@@ -109,7 +112,7 @@ int QLoozer::GetLoozer(void)
 //    }
 //    badClass.SetHere(currentMember, false);//chtoby v sled raz ego ne vybralo loozerom
 //    return currentMember;
-}
+//}
 
 /*
  *

@@ -78,5 +78,4 @@ HEADERS  += qloozer.h \
 FORMS    += qloozer.ui
 
 OTHER_FILES += \
-    qloozerluacore.lua \
-    lua/Makefile
+    qloozerluacore.lua

@@ -28,7 +28,6 @@ private:
     Ui::QLoozer *ui;
     QStringList headerList;
     void MakeConnections();
-    int GetLoozer(void);
 
 private slots:
     void OnFindLooserClicked();
