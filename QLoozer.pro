@@ -11,8 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        qloozer.cpp
+        qloozer.cpp \
+    qloozerluaapi.cpp
 
-HEADERS  += qloozer.h
+HEADERS  += qloozer.h \
+    qloozerluaapi.h
 
 FORMS    += qloozer.ui
