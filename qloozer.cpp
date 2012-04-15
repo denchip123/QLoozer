@@ -1,6 +1,6 @@
 #include "qloozer.h"
 #include "ui_qloozer.h"
-//Осторожно -- Костыль
+//Осторожно -- � остыль
 //    (__)_(__)
 //       | |
 //       | |
@@ -23,6 +23,9 @@ QLoozer::QLoozer(QWidget *parent) :
     headerList << tr("n") << tr("Names") << tr("Bonus") << tr("Stat");
     ui->studentsTableWidget->setHorizontalHeaderLabels(headerList);
     MakeConnections();
+
+    QLoozerLuaAPI lAPI;
+
 }
 
 QLoozer::~QLoozer()

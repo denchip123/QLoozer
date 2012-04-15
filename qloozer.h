@@ -7,6 +7,7 @@
 #include <QCheckBox>
 #include <QStringList>
 #include <QTime>
+#include "qloozerluaapi.h"
 
 namespace Ui {
     class QLoozer;
@@ -21,12 +22,12 @@ public:
     ~QLoozer();
 public slots:
     void OpenClassFile(QString file);
+    void AddStudentRow(QString name, int raiting, int stat);
 
 private:
     Ui::QLoozer *ui;
     QStringList headerList;
     void MakeConnections();
-    void AddStudentRow(QString name, int raiting, int stat);
     int GetLoozer(void);
 
 private slots:

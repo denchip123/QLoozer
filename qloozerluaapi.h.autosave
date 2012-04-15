@@ -12,6 +12,10 @@ class QLoozerLuaAPI
 {
 public:
     QLoozerLuaAPI();
+signals:
+    void SendLooser(QString name, int raiting, int stat);
+public slots:
+
 };
 
 #endif // QLOOZERLUAAPI_H
